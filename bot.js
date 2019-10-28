@@ -1,5 +1,7 @@
 const { Client, RichEmbed, Collection } = require('discord.js');
-const { config }= require("dotenv");
+const { config } = require("dotenv");
+const fs = require("fs");
+const prefix = ".";
 
 const client = new Client({
     disableEveryone: true
@@ -7,6 +9,7 @@ const client = new Client({
 
 client.commands = new Collection();
 client.aliases = new Collection();
+client.categories = fs.readdirSync("./commands/");
 
 ["handler"].forEach(handler => {
     require(`./handler/${handler}`)(client);

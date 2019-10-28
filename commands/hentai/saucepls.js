@@ -1,11 +1,10 @@
-const { RichEmbed } = require("discord.js");
-const axios = require("axios");
+const { RichEmbed } = require("discord.js"), axios = require("axios"), { stripIndents } = require("common-tags");
 
 module.exports = {
     name: "saucepls",
     aliases: ["nhentai", "hentaisearch", "hentai"],
     category: "hentai",
-    usage: "[search]",
+    usage: "<search>",
 
     run: async(client, message, args) => {
         const search = args.join(' ');
@@ -14,8 +13,31 @@ module.exports = {
             return message.reply("Please enter a search query.").then(m => m.delete(5000));
         } else {
             let url = `https://nhentai.net/api/galleries/search?query=${search}`
-            axios
-        }
+            axios.get(url).then((response) => {
+                
+                const resultsSize = (response.data.result).length;
+                const results = response.data.result[Math.floor(Math.random() * resultsSize)];
+                if(!results){
+                    return message.reply("No results found.").then(m => m.delete(5000));
+                } else {
+                    const tag = results.tags;
+                                    
+                    let s = '';
+                    tag.forEach(v => s+=`${v.name}\n`);
+                    console.log(s);
 
+                    const embed = new RichEmbed()
+                        .setThumbnail(`https://t.nhentai.net/galleries/${results.media_id}/cover.jpg`)
+                        .setTitle(`Title: ${results.title.pretty}`)
+                        .addField('Tags:', `${s}`, true)
+                        .addField('Details:', stripIndents`**ID:** *${results.id}*
+                        **Pages:** *${results.num_pages}*
+                        **Favorites:** *${results.num_favorites}*`)
+                        .setColor(message.guild.me.displayHexColor === "#000000" ? "#FFFFFF" : message.guild.me.displayHexColor);
+
+                    message.channel.send(embed);
+                }
+            })
+        }
     }
 }
