@@ -1,4 +1,5 @@
 const { RichEmbed } = require("discord.js"), axios = require("axios"), { stripIndents } = require("common-tags");
+const fs = require("fs");
 
 module.exports = {
     name: "saucepls",
@@ -9,7 +10,10 @@ module.exports = {
 
     run: async(client, message, args) => {
         const search = args.join(' ');
-        
+        let nsfwOnly = JSON.parse(fs.readFileSync('././serverSettings.json'));
+        if (!message.channel.nsfw && nsfwOnly.nsfwEnable === `${message.guild.id}_false`) {
+            return message.reply("This command only works in channels marked NSFW...").then(m => m.delete(3000));
+        }
         if (!search){
             return message.reply("Please enter a search query.").then(m => m.delete(5000));
         } else {
