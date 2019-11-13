@@ -32,7 +32,9 @@ client.on("message", async message => {
 
     if(message.author.bot) return;
     if(!message.guild) return;
-    if(!message.content.startsWith(prefix)){ return; } else {}
+    if(!message.content.startsWith(prefix)){ return; } else if(message.content.includes("ruka gay")){
+        message.channel.send("no u")
+    }
     if(!message.member) message.member = await message.guild.fetchMember(message);
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);

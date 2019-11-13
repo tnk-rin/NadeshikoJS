@@ -30,7 +30,7 @@ module.exports = {
                         console.log(s);
 
                         const embed = new RichEmbed()
-                            .setThumbnail(`https://t.nhentai.net/galleries/${results.id}/cover.jpg`)
+                            .setThumbnail(`https://t.nhentai.net/galleries/${results.media_id}/cover.jpg`)
                             .setTitle(`Title: ${results.title.pretty}`)
                             .addField('Tags:', `${s}`, true)
                             .addField('Details:', stripIndents`**ID:** *${results.id}*

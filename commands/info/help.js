@@ -51,7 +51,7 @@ function getCMD(client, message, input){
     if(cmd.usage) {
         info += `\n**Usage**: ${cmd.usage}`;
     if(cmd.example)
-        info += `\n**Example**: \`${cmd.example}\``;
+        info += `\n**Example**: ${cmd.example}`;
 
     embed.setFooter(`Syntax: <> = required, [] = optional`);
     }

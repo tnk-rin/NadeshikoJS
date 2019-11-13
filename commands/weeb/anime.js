@@ -4,8 +4,8 @@ module.exports = {
     name: "anime",
     aliases: ["malsearch", "animesearch"],
     category: "weeb",
-    usage: "<search | g (tag)>",
-    example: ".saucepls big boobs | .saucepls 177013",
+    usage: "<search>",
+    example: ".anime steins;gate",
 
     run: async(client, message, args) => {
         const search = args.join('%20');
@@ -32,9 +32,10 @@ module.exports = {
                     const embed = new RichEmbed()
                         .setThumbnail(results[selection].image_url)
                         .setTitle(`Title: ${results[selection].title}`)
-                        .addField('Details:', stripIndents`**Description:** *${results[selection].synopsis}*
+                        .addField('----------------------------------------------------------------------------------', stripIndents`**Description:** *${results[selection].synopsis}*
                         **Type:** *${results[selection].type}*
-                        **Rating:** *${results[selection].score}*`)
+                        **Rating:** *${results[selection].score}*
+                        **Link:** ${results[selection].url}`)
                         .setColor(message.guild.me.displayHexColor === "#000000" ? "#FFFFFF" : message.guild.me.displayHexColor);
 
                     message.channel.send(embed);
