@@ -4,7 +4,7 @@ const fs = require("fs");
 module.exports = {
     name: "saucepls",
     aliases: ["nhentai", "hentaisearch", "hentai"],
-    category: "weeb",
+    category: "nsfw",
     usage: "<search | g (tag)>",
     example: ".saucepls big boobs | .saucepls g 273405",
 

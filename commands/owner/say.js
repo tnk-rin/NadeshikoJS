@@ -28,7 +28,7 @@ module.exports = {
 
         } else {
 
-            message.channel.send("This is an owner only command.")
+            return message.reply("This is an owner only command...").then(m => m.delete(2000));
         
         }
     }
