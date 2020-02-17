@@ -57,7 +57,7 @@ module.exports = {
                         const tag = results.tags;
                                         
                         let s = '';
-                        tag.forEach(v => s+=`${v.name}\n`);
+                        tag.forEach(v => s+=`${v.name}, `);
                         console.log(s);
 
                         const embed = new RichEmbed()

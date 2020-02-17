@@ -21,8 +21,8 @@ client.on("ready", ()=> {
     client.user.setPresence({
         status: "online",
         game: {
-            name: "Kotori",
-            type: "LISTENING"
+            name: "Tanaka procrastinate on updating me.",
+            type: "WATCHING"
         }
     });
 });

@@ -93,7 +93,7 @@ module.exports = {
             } else if(emoji === "❌"){
                 msg.delete();
 
-                message.reply("Kick canceled...")
+                message.reply("Ban canceled...")
                     .then(m => m.delete(5000));
             }
         });
