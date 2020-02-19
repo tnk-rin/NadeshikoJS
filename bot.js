@@ -16,7 +16,7 @@ client.categories = fs.readdirSync("./commands/");
 })
 
 client.on("ready", ()=> {
-    console.log(`i-is this thing on? yes? good! I am ${client.user.username}`);
+    console.log(`Rin Chan!! HiHi I am ${client.user.username}!`);
 
     client.user.setPresence({
         status: "online",

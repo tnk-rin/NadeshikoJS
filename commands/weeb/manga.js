@@ -10,6 +10,10 @@ module.exports = {
     run: async(client, message, args) => {
         const search = args.join('%20');
 
+        if(process.env.MAL == "offline"){
+            return message.reply("This command is temporarily unavaliable due to the DDOS outages that MAL has been experiencing...").then(m => m.delete(5000));
+        }
+
         if (!search) {
             return message.reply("Please enter a search query.").then(m => m.delete(5000));    
         } else {

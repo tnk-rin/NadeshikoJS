@@ -3,7 +3,7 @@ const fs = require("fs");
 
 module.exports = {
     name: "saucepls",
-    aliases: ["nhentai", "hentaisearch", "hentai"],
+    aliases: ["nhentai", "hentaisearch", "hentai", "doujin"],
     category: "nsfw",
     usage: "<search | g (tag)>",
     example: ".saucepls big boobs | .saucepls g 273405",
@@ -11,9 +11,10 @@ module.exports = {
     run: async(client, message, args) => {
         const search = args.join(' ');
         let nsfwOnly = JSON.parse(fs.readFileSync('././serverSettings.json'));
-        if (!message.channel.nsfw && nsfwOnly.nsfwEnable === `${message.guild.id}_false`) {
+        if (!message.channel.nsfw) {
             return message.reply("This command only works in channels marked NSFW...").then(m => m.delete(3000));
         }
+        
         if (!search){
             return message.reply("Please enter a search query.").then(m => m.delete(5000));
         } else {
