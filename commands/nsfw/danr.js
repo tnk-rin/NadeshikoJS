@@ -5,6 +5,7 @@ const fs = require("fs");
 const Danbooru = require('danbooru');
 const { promptMessage } = require("../../functions.js");
 const booru = new Danbooru();
+const isReachable = require('is-reachable');
 
 module.exports = {
     name: "danr",
@@ -21,24 +22,29 @@ module.exports = {
             return message.reply("This command only works in channels marked NSFW...").then(m => m.delete(3000));
         }    
         
+        if (await isReachable('https://danbooru.donmai.us/') == false)
+            return message.reply("Danbooru servers are currently down, please try again later...").then(m => m.delete(3000));
+
         if (!search){
             return message.reply("Please enter a search query.").then(m => m.delete(5000));
         } else {
-            booru.posts({ tags: `${search}` }).then(posts => {
-                const post = posts[Math.floor(Math.random()*posts.length)]
+            booru.posts({ tags: `${search}`, limit: 200 }).then(posts => {
+                const choice = Math.floor(Math.random()*posts.length);
+                const post = posts[choice];
                 if(!post){
                     return message.reply("No results found...").then(m => m.delete(5000));
                 } else {
                     
-                    const url = booru.url(post.file_url)
+                    const url = booru.url(post.file_url);
                     
                     console.log(url.href);
                     
                     const embed = new RichEmbed()
                         .setImage(url.href)
                         .setTitle("Link to image").setURL(`https://danbooru.donmai.us/posts/${post.id}`)
+                        // .setFooter(`Post ${choice} of ${posts.length}`);
 
-                    message.channel.send(embed)
+                    message.channel.send(embed);
                     /*
                     .then(async msg => {
                         const emoji = await promptMessage(msg, message.author, 30, ["⏮", "⏭"]);

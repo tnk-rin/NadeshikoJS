@@ -1,5 +1,6 @@
 const { RichEmbed } = require("discord.js"), axios = require("axios"), { stripIndents } = require("common-tags");
 const fs = require("fs");
+const isReachable = require('is-reachable');
 
 module.exports = {
     name: "saucepls",
@@ -10,10 +11,12 @@ module.exports = {
 
     run: async(client, message, args) => {
         const search = args.join(' ');
-        let nsfwOnly = JSON.parse(fs.readFileSync('././serverSettings.json'));
         if (!message.channel.nsfw) {
             return message.reply("This command only works in channels marked NSFW...").then(m => m.delete(3000));
         }
+
+        if (isReachable('https://nhentai.net') == false)
+            return message.reply("nHentai servers are currently down, please try again later...").then(m => m.delete(3000));
         
         if (!search){
             return message.reply("Please enter a search query.").then(m => m.delete(5000));

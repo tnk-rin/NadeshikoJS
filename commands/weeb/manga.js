@@ -1,4 +1,5 @@
 const { RichEmbed } = require("discord.js"), axios = require("axios"), { stripIndents } = require("common-tags");
+const isReachable = require('is-reachable');
 
 module.exports = {
     name: "manga",
@@ -10,10 +11,12 @@ module.exports = {
     run: async(client, message, args) => {
         const search = args.join('%20');
 
-        if(process.env.MAL == "offline"){
-            return message.reply("This command is temporarily unavaliable due to the DDOS outages that MAL has been experiencing...").then(m => m.delete(5000));
-        }
+        if (await isReachable('myanimelist.net') == false)
+        return message.reply("MyAnimeList servers are currently down, please try again later...").then(m => m.delete(3000));
 
+        if (await isReachable('api.jikan.moe') == false)
+            return message.reply("The api is currently not responding, please try again later...").then(m => m.delete(3000));
+            
         if (!search) {
             return message.reply("Please enter a search query.").then(m => m.delete(5000));    
         } else {

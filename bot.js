@@ -1,3 +1,6 @@
+// stable token: NjIxMjQwNzAxMDQ4NTg2MjQw.XXy_2A.QqWwDjOdw9FtVwO95VVkKNVqV3w
+// beta token: NjEyMTk2NDUwNDUzMDI4ODc0.XlSKVg.H_E31R8SSs7tCBTwhZCKgh1jCDA
+
 const { Client, RichEmbed, Collection } = require('discord.js');
 const { config } = require("dotenv");
 const fs = require("fs");
@@ -28,7 +31,7 @@ client.on("ready", ()=> {
 });
 
 client.on("message", async message => {
-    const prefix = ".";
+    const prefix = process.env.PREFIX;
 
     if(message.author.bot) return;
     if(!message.guild) return;
