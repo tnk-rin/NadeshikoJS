@@ -16,6 +16,7 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.1.0",
     "is-reachable": "^4.0.0",
-    "jikan-node": "^1.2.0"
+    "jikan-node": "^1.2.0",
+    "random-puppy": "^1.1.0"
   }
 }
