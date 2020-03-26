@@ -12,7 +12,7 @@ module.exports = {
     aliases: ["dr", "danbooru"],
     category: "nsfw",
     usage: "<search>",
-    example: ".danr yuri | .danbooru rating:safe",
+    example: ".danr yuri | .danbooru shiraishi rating:safe",
 
     run: async(client, message, args) => {
         const search = args.join(' ');

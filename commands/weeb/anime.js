@@ -22,18 +22,23 @@ module.exports = {
         } else {
             let url = `https://api.jikan.moe/v3/search/anime?q=${search}&page=1`
             axios.get(url).then((response) => {
-                
+                let status = "";
                 let selection = 0;
 
                 const results = response.data.results;
                 if(!results){
                     return message.reply("No results found.").then(m => m.delete(5000));
                 } else {
-                    // const tag = results.tags;
-                    // let s = '';
-                    // tag.forEach(v => s+=`${v.name}, `);
-                    // console.log(s);
-
+                    
+                    if(results[selection].airing){
+                        status = "Airing";
+                    } else {
+                        if(results[selection].start_date == null){
+                            status = "Not yet aired";
+                        } else if(results[selection].start_date != null && results[selection].end_date != null){
+                            status = "Finished airing";
+                        }
+                    }
                     
 
                     const embed = new RichEmbed()
@@ -42,8 +47,9 @@ module.exports = {
                         .addField('----------------------------------------------------------------------------------', stripIndents`**Description:** *${results[selection].synopsis}*
                         **Type:** *${results[selection].type}*
                         **Rating:** *${results[selection].score}*
-                        **Link:** ${results[selection].url}`)
-                        .setColor(message.guild.me.displayHexColor === "#000000" ? "#FFFFFF" : message.guild.me.displayHexColor);
+                        **Status:** ${status}`)
+                        .setColor(message.guild.me.displayHexColor === "#000000" ? "#FFFFFF" : message.guild.me.displayHexColor)
+                        .setURL(results[selection].url);
 
                     message.channel.send(embed);
                 }
