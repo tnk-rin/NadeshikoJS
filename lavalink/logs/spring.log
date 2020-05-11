@@ -1216,3 +1216,10 @@ Caused by: java.io.EOFException: XNIO000812: Connection closed unexpectedly
 
 2020-03-25 21:48:13.554  INFO 15716 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"pause","guildId":"599076003247030275","pause":true}
 2020-03-25 21:48:16.672  INFO 15716 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"pause","guildId":"599076003247030275","pause":false}
+2020-03-25 21:55:05.031  INFO 15716 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"599076003247030275"}
+2020-03-25 22:04:17.792  INFO 15716 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56778 -- CloseStatus[code=1006, reason=]
+2020-03-25 22:04:17.793  INFO 15716 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-03-25 22:04:17.793  INFO 15716 --- [XNIO-1 I/O-6] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-03-25 22:04:24.911  INFO 15716 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-25 22:04:24.912  INFO 15716 --- [Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-03-25 22:04:24.914  INFO 15716 --- [Thread-1] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'

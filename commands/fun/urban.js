@@ -13,6 +13,9 @@ module.exports = {
         const search = args.join(' ');
         const url = `https://mashape-community-urban-dictionary.p.rapidapi.com/define`;
 
+        if(!search)
+            return message.reply("Please provide a search query...").then(m => m.delete(5000));
+
         axios.get(url, {
             "headers": {
                 "content-type":"application/octet-stream",
@@ -23,6 +26,10 @@ module.exports = {
             }
         }).then((response) => {
             // console.log(response.data.list[0].definition)
+
+            if(!response.data.list[0])
+                return message.reply(`No results found for "${search}"...`);
+
             const embed = new RichEmbed()
                 .setTitle(response.data.list[0].word)
                 .setFooter(response.data.list[0].author)
@@ -31,7 +38,11 @@ module.exports = {
                 .setColor("RANDOM");
 
             message.channel.send(embed);
-        });
+        }).catch(function (error) {
+            // handle error
+            console.log(error);
+            return message.reply(`Something went wrong... \`\`\`${error}\`\`\``)
+        })
     
     }
 }

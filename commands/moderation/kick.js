@@ -87,6 +87,11 @@ module.exports = {
                 message.channel.send(alertEmbed)
                     .then(m => m.delete(10000));
 
+                const channel = message.guild.channels.find(channel => channel.name === "reports");
+
+                if(channel)
+                    channel.send(alertEmbed.setFooter(`Kicked by: ${message.member.displayName}`, message.author.displayAvatarURL));
+
                 toKick.kick(args.slice(1).join(" "))
                     .catch(err => {
                         if(err) return message.channel.send(`It looks like something is wrong with our IBM 5100. We'll get onto fixing it. ***D A R U***`);
@@ -98,6 +103,5 @@ module.exports = {
                     .then(m => m.delete(5000));
             }
         });
-
     }
 }

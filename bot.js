@@ -68,6 +68,14 @@ client.on("message", async message => {
         command.run(client, message, args);
 });
 
+client.on("disconnect", (client, event) => {
+    setTimeout(() => client.destroy().then(() => client.login(process.env.TOKEN)), 10000);
+    console.log(`[DISCONNECT] Notice: Disconnected from gateway with code ${event.code} - Attempting reconnect.`);
+});
+
+client.on("error", e => {
+    console.log(e);
+});
 
 config({
     path: `${__dirname}/.env`

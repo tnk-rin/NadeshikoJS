@@ -24,7 +24,7 @@ function getAll(client, message){
         return client.commands
             .filter(cmd => cmd.category === category)
             .map(cmd => `\`.${cmd.name}\``)
-            .join("\n")
+            .join(" ")
     }
 
     const info = client.categories
