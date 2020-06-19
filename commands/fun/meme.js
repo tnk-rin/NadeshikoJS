@@ -6,18 +6,16 @@ module.exports = {
     category: "fun",
     description: "Sends a meme",
     run: async (client, message, args) => {
-        const subreddits = ["animemes", "anime_irl"];
+        const subreddits = ["animemes"];
         const random = subreddits[Math.floor(Math.random() * subreddits.length)];
-        const img = await RandomPuppy(random);
+        // const img = await RandomPuppy(random);
 
         const embed = new RichEmbed()
             .setColor("RANDOM")
-            .setImage(img)
-            .setFooter(`/r/${random}`)
+            .setImage('https://upload.wikimedia.org/wikipedia/en/d/d0/Loss_comic.jpg')
+            .setFooter(`/r/cum`)
             .setTitle("Link to subreddit")
-            .setURL(`https://reddit.com/r/${random}`);
-
+            .setURL(`https://cum.com`);
         message.channel.send(embed);
-
     }
 }

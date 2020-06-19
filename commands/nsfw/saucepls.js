@@ -11,7 +11,7 @@ module.exports = {
 
     run: async(client, message, args) => {
         const search = args.join(' ');
-        if (!message.channel.nsfw)
+        if (!message.channel.nsfw && message.guild.id != 287905918144872450)
             return message.reply("This command only works in channels marked NSFW...").then(m => m.delete(3000));
         
         if (isReachable('https://nhentai.net') == false)

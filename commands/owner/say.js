@@ -1,4 +1,5 @@
-const { RichEmbed } = require("discord.js");
+const { RichEmbed } = require("discord.js"), fs = require("fs");
+const userList = JSON.parse(fs.readFileSync("./json/userList.json"));
 
 module.exports = {
     name: "say",
@@ -7,7 +8,17 @@ module.exports = {
     usage: "<INPUT>",
     
     run: async (client, message, args) => {
-        if(message.author.id === process.env.OWNER_ID){
+        let isTester = false;
+        keys.forEach(e => {
+            if(e == message.author.id) {
+                isTester = true;
+                return;
+            }
+        });
+
+        const ownerOrTester = message.author.id === process.env.OWNER_ID || isTester
+
+        if(ownerOrTester){
             if(message.deletable) message.delete();
         
             if(args.length < 1)
@@ -28,7 +39,7 @@ module.exports = {
 
         } else {
 
-            return message.reply("This is an owner only command...").then(m => m.delete(2000));
+            return message.reply("This command is only avaliable to beta testers...").then(m => m.delete(2000));
         
         }
     }

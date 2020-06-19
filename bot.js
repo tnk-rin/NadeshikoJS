@@ -3,7 +3,7 @@
 
 const { Client, RichEmbed, Collection } = require('discord.js');
 const { ErelaClient, Utils } = require("erela.js");
-const { nodes } = require('./erelaJ.json')
+const { nodes } = require('./json/erelaJ.json')
 const { config } = require("dotenv");
 const fs = require("fs");
 
