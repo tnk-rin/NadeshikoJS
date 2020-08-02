@@ -9,6 +9,7 @@ module.exports = {
     usage: "<osu username>",
     example: ".setosu Tanaka_Rin",
     run: async(client, message, args) => {
+        return message.react('😳');
         /*
         let dataJSON = JSON.parse(fs.readFileSync('./json/userList.json'));
         let argsjoin = args.join(' ')
@@ -33,6 +34,6 @@ module.exports = {
         });
         */
        
-        return message.channel.send("This command is not complete...").then(m => m.delete(3000));
+        //return message.channel.send("This command is not complete...").then(m => m.delete(3000));
     }
 }

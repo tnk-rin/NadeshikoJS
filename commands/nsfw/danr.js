@@ -15,9 +15,15 @@ module.exports = {
     example: ".danr yuri | .danbooru shiraishi rating:safe",
 
     run: async(client, message, args) => {
-        const search = args.join(' ');
-        
-        let nsfwOnly = JSON.parse(fs.readFileSync('././serverSettings.json'));
+	let number = 1;
+	if (!isNaN(args[args.length - 1])){
+		number = args[args.length - 1];
+	        args.splice(args.length - 1, args.length - 1)
+	}
+	let search = args.join(' ');
+	if (number > 5)
+		number = 5;
+
         if (!message.channel.nsfw) {
             return message.reply("This command only works in channels marked NSFW...").then(m => m.delete(3000));
         }    
@@ -28,6 +34,8 @@ module.exports = {
         if (!search){
             return message.reply("Please enter a search query.").then(m => m.delete(5000));
         } else {
+	let cycles = 0;
+	while (cycles < number) {
             booru.posts({ tags: `${search}`, limit: 200 }).then(posts => {
                 const choice = Math.floor(Math.random()*posts.length);
                 const post = posts[choice];
@@ -63,9 +71,8 @@ module.exports = {
                     */
                 }
               })
-
-            
-                        
-        }    
+	    cycles += 1;
+	}
+        }
     }
 }

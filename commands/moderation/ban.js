@@ -6,7 +6,7 @@ module.exports = {
     name: "ban",
     category: "moderation",
     usage: "<id | mention>",
-    description: "Bans the member",
+    description: "Bans the member.",
 
     run: async(client, message, args) => {
         const logChannel = message.guild.channels.find(c => c.name === "logs") || message.channel;
@@ -30,7 +30,7 @@ module.exports = {
         if(!message.member.hasPermission("BAN_MEMBERS")){
             return message.reply("You do not have the permissions to ban members. Please contact a staff member.")
                 .then(m => m.delete(5000));
-        } else if(message.author.id === process.env.OWNER_ID) {}
+        }
 
         //no bot permissions
         if(!message.guild.me.hasPermission("BAN_MEMBERS")){

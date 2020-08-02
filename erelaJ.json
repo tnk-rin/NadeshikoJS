@@ -1,5 +1,0 @@
-{
-    "nodes": [
-        { "host": "localhost", "port": 4523, "password": "youshallnotpass" }
-    ]
-}

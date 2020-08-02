@@ -7,6 +7,7 @@ module.exports = {
     category: "osu",
     example: ".resetosu",
     run: async(client, message, args) => {
+        return message.react('😳');
         /*
         let UID = (message.author.id);
         let dataJSON = JSON.parse(fs.readFileSync('./json/userList.json'));
@@ -18,6 +19,6 @@ module.exports = {
         fs.writeFileSync('./json/userList.json', jsonStr)
         message.react('✅');
         */
-       return message.channel.send("This command is not complete...").then(m => m.delete(3000));
+       //return message.channel.send("This command is not complete...").then(m => m.delete(3000));
     }
 }
