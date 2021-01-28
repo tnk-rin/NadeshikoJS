@@ -1,4 +1,4 @@
-# RukaJS
+# NadeshikoJS
 Requires discord.js and common-tags to be installed.
 
 # Installation
